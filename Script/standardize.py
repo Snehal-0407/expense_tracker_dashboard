@@ -2,9 +2,6 @@
 import pandas as pd
 import re
 
-# Load file
-file_path = "output/parsed_transactions.csv"
-df = pd.read_csv("output/parsed_transactions.csv")
 
 # Function
 def standardize_merchant(merchant):
@@ -41,7 +38,12 @@ def standardize_merchant(merchant):
         return "UBER"
 
     return merchant
-# Apply function
-df["Merchant"] = df["Merchant"].apply(standardize_merchant)
 
-
+def standardize_parsed_data():
+    # Load file
+    file_path = "output/parsed_transactions.csv"
+    df = pd.read_csv("output/parsed_transactions.csv")
+    # Apply function
+    df["Merchant"] = df["Merchant"].apply(standardize_merchant)
+    df.to_csv("output/parsed_transactions.csv")
+    

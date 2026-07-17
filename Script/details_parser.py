@@ -1,15 +1,13 @@
 #Detilas parser
 
 import pandas as pd
-file_path = "output/cleaned_data.xlsx"
-df = pd.read_excel(file_path)
-
-df["TXN_Type"] = ""
-df["Mode"] = ""
-df["Merchant"] = ""
-
-
 import re
+
+def read_clean_data():
+    file_path = "output/cleaned_data.xlsx"
+    df = pd.read_excel(file_path)
+    return df
+
 
 def parse_details(details):
     details = str(details).strip()
@@ -40,7 +38,14 @@ def parse_details(details):
 
     return pd.Series([txn_type, mode, merchant])
 
+def parse_clean_data():
+    df = read_clean_data()
 
-df[["TXN_Type", "Mode", "Merchant"]] = df["Details"].apply(parse_details)
+    df["TXN_Type"] = ""
+    df["Mode"] = ""
+    df["Merchant"] = ""
 
-df.to_csv("output/parsed_transactions.csv", index=False)
+
+    df[["TXN_Type", "Mode", "Merchant"]] = df["Details"].apply(parse_details)
+
+    df.to_csv("output/parsed_transactions.csv", index=False)
