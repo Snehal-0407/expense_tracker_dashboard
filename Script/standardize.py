@@ -10,6 +10,7 @@ def standardize_merchant(merchant):
     # Food Delivery
     if "SWIGGY" in merchant:
         return "SWIGGY"
+    
     if "ZOMATO" in merchant:
         return "ZOMATO"
 
@@ -30,12 +31,27 @@ def standardize_merchant(merchant):
     if "AIRTEL" in merchant:
         return "AIRTEL"
 
-    if "VI" in merchant or "VODAFONE" in merchant:
-        return "VI"
-
     # Ride
     if "UBER" in merchant:
         return "UBER"
+    if "OLA" in merchant:
+        return "OLA"
+    
+    # Cash Withdrawal
+    if merchant == "CASH WITHDRAWAL":
+     return "CASH WITHDRAWAL"
+    
+    # Fuel
+    if (
+        "PETROL" in merchant
+        or "FUEL" in merchant
+        or "DIESEL" in merchant
+        or "INDIAN" in merchant
+        or "HPCL" in merchant
+        or "IOC" in merchant
+        or "BPCL" in merchant
+    ):
+        return "FUEL"
 
     return merchant
 

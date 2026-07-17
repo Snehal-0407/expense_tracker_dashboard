@@ -11,8 +11,8 @@ def categorize_transaction(merchant, debit , TXN_Type):
     if TXN_Type == "Credit":
         return "Income"
     
-    #Cash Withdrawal
-    if TXN_Type == "ATM":
+     # Cash Withdrawal
+    elif merchant == "CASH WITHDRAWAL":
         return "Cash Withdrawal"
 
     # Food
@@ -24,7 +24,7 @@ def categorize_transaction(merchant, debit , TXN_Type):
         return "Shopping"
 
     # Bills Payment
-    elif merchant in ["JIO", "AIRTEL", "RECHARGE", "BILL PAYMENT" , "ELECTRICITY BILL"]:
+    elif merchant in ["AIRTEL", "RECHARGE", "BILL PAYMENT" , "ELECTRICITY BILL"]:
         return "Bills Payment"
 
     # Transport
@@ -32,7 +32,7 @@ def categorize_transaction(merchant, debit , TXN_Type):
         return "Transport"
 
     # Fuel
-    elif merchant in ["PETROL PUMP", "FUEL STATION", "HPCL", "IOC", "BPCL", "Fuel", "PETROL", "INDIAN", "INDIAN OIL"]:
+    elif merchant == "FUEL":
         return "Fuel"
     
     #Groceries
@@ -46,7 +46,7 @@ def categorize_transaction(merchant, debit , TXN_Type):
     
     #Daily EXP
     elif debit >30 and debit <= 100:
-        return "Daily Exp"
+        return "Daily Utility"
     
     #Default
     else:
