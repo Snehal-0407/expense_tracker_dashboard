@@ -1,10 +1,6 @@
-
 import pandas as pd
 import re
 
-# Load file
-file_path = "output/parsed_transactions.csv"
-df = pd.read_csv("output/parsed_transactions.csv")
 
 #CATEGORIZE TRANSACTIONS
 
@@ -56,25 +52,33 @@ def categorize_transaction(merchant, debit , TXN_Type):
     else:
         return "Others"
 
-df["Month"] = pd.to_datetime(df["Date"]).dt.month_name()
-df["Year"] = pd.to_datetime(df["Date"]).dt.year
-df["Day"] = pd.to_datetime(df["Date"]).dt.day
-df["Weekday"] = pd.to_datetime(df["Date"]).dt.day_name()
+def categorize_standardize_data():
+    # Load file
+    file_path = "output/parsed_transactions.csv"
+    df = pd.read_csv("output/parsed_transactions.csv")
 
-print(df.head(10))
-print(df.columns)
-print(df.isnull().sum())
-print(df.columns.tolist())
+    df["Month"] = pd.to_datetime(df["Date"]).dt.month_name()
+    df["Year"] = pd.to_datetime(df["Date"]).dt.year
+    df["Day"] = pd.to_datetime(df["Date"]).dt.day
+    df["Weekday"] = pd.to_datetime(df["Date"]).dt.day_name()
 
-# Create Category column
-df["Category"] = df.apply(
-    lambda row: categorize_transaction(
-        row["Merchant"],
-        row["Debit"],
-        row["TXN_Type"]
-    ),
-    axis=1
-)
-print(df["Category"].value_counts())
+    print(df.head(10))
+    print(df.columns)
+    print(df.isnull().sum())
+    print(df.columns.tolist())
 
-df.to_excel("output/final_transactions.xlsx", index=False)
+    # Create Category column
+    df["Category"] = df.apply(
+        lambda row: categorize_transaction(
+            row["Merchant"],
+            row["Debit"],
+            row["TXN_Type"]
+        ),
+        axis=1
+    )
+    print(df["Category"].value_counts())
+
+    df.to_excel("output/final_transactions.xlsx", index=False)
+    print("Final transactions saved to output/final_transactions.xlsx")
+   
+    print("ok categorize")
