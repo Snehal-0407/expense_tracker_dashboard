@@ -48,4 +48,11 @@ def parse_clean_data():
 
     df[["TXN_Type", "Mode", "Merchant"]] = df["Details"].apply(parse_details)
 
-    df.to_csv("output/parsed_transactions.csv", index=False)
+    # Fill Merchant for ATM withdrawals
+    df.loc[
+    df["Details"].str.contains("ATM WDL|ATM CASH|POS ATM|YONO CASH|YONO WDL|YONO CASH ATM", case=False, na=False),
+    "Merchant"
+    ] = "CASH WITHDRAWAL"
+
+    # Save parsed file (optional)
+    df.to_excel("output/parsed_transactions.xlsx", index=False)

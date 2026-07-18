@@ -54,8 +54,8 @@ def categorize_transaction(merchant, debit , TXN_Type):
 
 def categorize_standardize_data():
     # Load file
-    file_path = "output/parsed_transactions.csv"
-    df = pd.read_csv("output/parsed_transactions.csv")
+    file_path = "output/parsed_transactions.xlsx"
+    df = pd.read_excel("output/parsed_transactions.xlsx")
 
     df["Month"] = pd.to_datetime(df["Date"]).dt.month_name()
     df["Year"] = pd.to_datetime(df["Date"]).dt.year
@@ -76,9 +76,7 @@ def categorize_standardize_data():
         ),
         axis=1
     )
-    print(df["Category"].value_counts())
 
+    print(df["Category"].value_counts())
     df.to_excel("output/final_transactions.xlsx", index=False)
-    print("Final transactions saved to output/final_transactions.xlsx")
-   
-    print("ok categorize")
+    print("ok file saved")
