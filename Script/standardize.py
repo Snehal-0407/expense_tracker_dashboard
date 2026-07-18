@@ -57,9 +57,8 @@ def standardize_merchant(merchant):
 
 def standardize_parsed_data():
     # Load file
-    file_path = "output/parsed_transactions.csv"
-    df = pd.read_csv("output/parsed_transactions.csv")
+    file_path = "output/parsed_transactions.xlsx"
+    df = pd.read_excel(file_path)
     # Apply function
     df["Merchant"] = df["Merchant"].apply(standardize_merchant)
-    df.to_csv("output/parsed_transactions.csv")
-    
+    df.to_excel("output/parsed_transactions.xlsx", index=False)

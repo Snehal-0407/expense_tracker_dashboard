@@ -8,7 +8,7 @@ def read_input_file():
     file_path = "input/April.xlsx"
 
     df = pd.read_excel(file_path)
-
+    
     print(df.head())
     print(df.columns)
     print(df.info())
@@ -17,7 +17,7 @@ def read_input_file():
 
 def clean_input_data(df):
 
-    # Remove completely empty rows
+     # Remove completely empty rows
     df = df.dropna(how="all")
 
     # Replace blank Debit with 0
@@ -25,6 +25,7 @@ def clean_input_data(df):
 
     # Replace blank Credit with 0
     df["Credit"] = df["Credit"].fillna(0)
+
     # Delete the "Ref No/Cheque No" column
     df = df.drop(columns=["Ref No/Cheque No"])
     print(df.isnull().sum())
@@ -36,9 +37,6 @@ def clean_input_data(df):
     df.to_excel("output/cleaned_data.xlsx", index=False)
 
     print(df.columns)
-
-
-
 
 
 # Start the process
