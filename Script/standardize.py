@@ -24,7 +24,7 @@ def standardize_merchant(merchant):
     if "MEESHO" in merchant:
         return "MEESHO"
 
-    # Recharge
+    # BILLS PAYMENT
     if "JIO" in merchant:
         return "JIO"
 
@@ -34,9 +34,14 @@ def standardize_merchant(merchant):
     # Ride
     if "UBER" in merchant:
         return "UBER"
+    
     if "OLA" in merchant:
         return "OLA"
     
+    # Groceries
+    if "GROCERY" in merchant or "MART" in merchant or "SUPERMARKET" in merchant or "BIG BAZAAR" in merchant or "DMART" in merchant or "K MART" in merchant or "JIO MART" in merchant:
+        return "GROCERY"
+
     # Cash Withdrawal
     if merchant == "CASH WITHDRAWAL":
      return "CASH WITHDRAWAL"
@@ -53,7 +58,7 @@ def standardize_merchant(merchant):
     ):
         return "FUEL"
 
-    return merchant
+    return "PERSON TRANSFER"  # Default category for unrecognized merchants
 
 def standardize_parsed_data():
     # Load file

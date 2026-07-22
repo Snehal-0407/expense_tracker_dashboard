@@ -24,7 +24,7 @@ def categorize_transaction(merchant, debit , TXN_Type):
         return "Shopping"
 
     # Bills Payment
-    elif merchant in ["AIRTEL", "RECHARGE", "BILL PAYMENT" , "ELECTRICITY BILL"]:
+    elif merchant in ["AIRTEL", "RECHARGE", "BILL PAYMENT" , "ELECTRICITY BILL", "JIO"]:
         return "Bills Payment"
 
     # Transport
@@ -36,7 +36,7 @@ def categorize_transaction(merchant, debit , TXN_Type):
         return "Fuel"
     
     #Groceries
-    elif merchant in ["GROCERY STORE", "SUPERMARKET", "BIG BAZAAR", "DMART", "SPAR", "GROCERY", "BLINKIT",]:
+    elif merchant in ["GROCERY STORE", "SUPERMARKET", "BIG BAZAAR", "DMART", "K MART", "GROCERY", "BLINKIT","JIO MART"]:
         return "Groceries"
     
     
